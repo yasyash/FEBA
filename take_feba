@@ -1,9 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 
 
 cd /home/pnz/FEBA
-#rm *.csv
 
-wget --user=mnmeteo --password=S5Dix3Yb ftp://192.168.1.115/*.*
+_today=$(date +'%Y-%m-%d')
+
+shopt -s extglob
+
+rm -v !(${_today}).csv
+
+wget --user=mnmeteo --password=S5Dix3Yb ftp://192.168.1.115/${_today}.csv
 
 
